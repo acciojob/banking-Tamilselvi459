@@ -45,11 +45,11 @@ public class BankAccount {
         else {
             String accnum = "";
             while (sum > 9) {
-                accnum += String.valueOf(9);
+                accnum += '9';
                 sum -= 9;
             }
-            accnum += String.valueOf(sum);
-            while (accnum.length() < digits) accnum += "0";
+            accnum += (sum+" ");
+            while (accnum.length() < digits) accnum += '0';
             return accnum;
         }
 
@@ -67,7 +67,7 @@ public class BankAccount {
         if(balance-amount<minBalance){
         throw new Exception("Insufficient Balance");
       }
-        else balance -= amount;
+        balance -= amount;
     }
 
 }
