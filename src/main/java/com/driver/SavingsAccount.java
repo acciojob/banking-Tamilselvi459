@@ -3,10 +3,10 @@ package com.driver;
 public class SavingsAccount extends BankAccount{
     double rate;
     double maxWithdrawalLimit;
-     public static double minBalance = 0;
+//     public static double minBalance = 0;
     public SavingsAccount(String name, double balance, double maxWithdrawalLimit, double rate) {
         // minimum balance is 0 by default
-        super(name,balance,minBalance);
+        super(name,balance,0);
         this.maxWithdrawalLimit = maxWithdrawalLimit;
         this.rate = rate;
 
@@ -23,7 +23,7 @@ public class SavingsAccount extends BankAccount{
 
     public double getSimpleInterest(int years){
         // Return the final amount considering that bank gives simple interest on current amount
-           return getBalance()*(1+(rate*years)/100);
+           return getBalance()*(1 + (rate*years)/100);
     }
 
     public double getCompoundInterest(int times, int years){
