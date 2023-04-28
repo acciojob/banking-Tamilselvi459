@@ -32,7 +32,7 @@ public class CurrentAccount extends BankAccount{
         // If the license Id is valid, do nothing
         // If the characters of the license Id can be rearranged to create any valid license Id
         // If it is not possible, throw "Valid License can not be generated" Exception
-        if(validate(tradeLicenseId)) return;
+        if(validateId(tradeLicenseId)) return;
         else{
             HashMap<Character,Integer> hm = new HashMap<>();
             int n = tradeLicenseId.length();
@@ -42,15 +42,16 @@ public class CurrentAccount extends BankAccount{
                 hm.put(c,hm.getOrDefault(c,0)+1);
                 if(max<hm.get(c)) max = hm.get(c);
             }
-            if(max>(n+1)/2) {
+            if(max > n/2) {
                 throw new Exception("Valid License can not be generated");
             }
-              while(!validate(tradeLicenseId))
+              while(!validateId(tradeLicenseId))
                 Collections.shuffle(Arrays.asList(tradeLicenseId.toCharArray()));
 
+            this.tradeLicenseId = tradeLicenseId;
         }
     }
-    public boolean validate(String a){
+    public boolean validateId(String a){
         int n = a.length();
         for(int i=0;i<n-1;i++) {
             if (a.charAt(i) == a.charAt(i + 1)) return false;
